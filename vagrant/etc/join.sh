@@ -1,0 +1,1 @@
+ --ignore-preflight-errors=all --cri-socket='unix:///var/run/singularity.sock'
