@@ -25,3 +25,4 @@ JOIN_COMMAND=$(kubeadm token create --print-join-command)
 cat > /sync/etc/join.sh <<EOF
 ${JOIN_COMMAND} --ignore-preflight-errors=all --cri-socket='unix:///var/run/singularity.sock'
 EOF
+

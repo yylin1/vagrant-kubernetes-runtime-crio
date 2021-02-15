@@ -1,1 +1,1 @@
- --ignore-preflight-errors=all --cri-socket='unix:///var/run/singularity.sock'
+kubeadm join 192.168.60.10:6443 --token 73o2v2.pfhvungtw02o62qg     --discovery-token-ca-cert-hash sha256:2793f629ac6f445d5a34b03eb65035b5ecf7876ba72d608700b13c2db7f52a68  --ignore-preflight-errors=all --cri-socket='unix:///var/run/singularity.sock'
