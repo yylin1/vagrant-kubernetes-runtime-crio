@@ -25,7 +25,7 @@ EOF
 # install singularity
 SINGULARITY_REPO="https://github.com/sylabs/singularity"
 export VERSION=3.6.4
-wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz -O ${HOME}
+cd ${HOME} && wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-${VERSION}.tar.gz
 tar -xzf ${HOME}/singularity-${VERSION}.tar.gz
 cd ${HOME}/singularity && ./mconfig && cd ./builddir &&  make && sudo make install
 
@@ -82,3 +82,10 @@ EOF
 sudo modprobe br_netfilter
 sudo sysctl -w net.bridge.bridge-nf-call-iptables=1
 sudo sysctl -w net.ipv4.ip_forward=1
+
+curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.{tar.gz,yaml}" &&
+tar zxvf krew.tar.gz &&
+KREW=./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" &&
+"$KREW" install --manifest=krew.yaml --archive=krew.tar.gz &&
+"$KREW" update
+echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> ~/.bashrc
